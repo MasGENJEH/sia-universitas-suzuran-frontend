@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.jsx';
+
+:root {
+    --monday-background: #f3f5f9;
+    --monday-border: #e8e8e8;
+    --monday-gray: #6a7686;
+    --monday-black: #292d32;
+    --monday-blue: #1053d5;
+    --monday-gray-background: #f3f3f3;
+    --monday-lime-green: #cbee5a;
+    --monday-lime-green-char: #deff6e;
+    --monday-red: #ff5070;
+    --monday-card: #ffffff;
+    --monday-gradient-start: #1e40af;
+    --monday-gradient-end: #3b82f6;
+}
+
+:root.dark, .dark {
+    --monday-background: #0f172a;
+    --monday-border: #475569;
+    --monday-gray: #94a3b8;
+    --monday-black: #f8fafc;
+    --monday-blue: #3b82f6;
+    --monday-gray-background: #334155;
+    --monday-lime-green: #65a30d;
+    --monday-lime-green-char: #84cc16;
+    --monday-red: #e11d48;
+    --monday-card: #1e293b;
+    --monday-gradient-start: #0f172a;
+    --monday-gradient-end: #1e3a8a;
+}
+
+@theme {
+    --font-sans: 'Lexend Deca', ui-sans-serif, system-ui, sans-serif;
+    
+    --color-monday-background: var(--monday-background);
+    --color-monday-border: var(--monday-border);
+    --color-monday-gray: var(--monday-gray);
+    --color-monday-black: var(--monday-black);
+    --color-monday-blue: var(--monday-blue);
+    --color-monday-gray-background: var(--monday-gray-background);
+    --color-monday-lime-green: var(--monday-lime-green);
+    --color-monday-lime-green-char: var(--monday-lime-green-char);
+    --color-monday-red: var(--monday-red);
+    --color-monday-card: var(--monday-card);
+}
+
+.bg-white {
+  background-color: var(--monday-card) !important;
+}
+
+.border-white {
+  border-color: var(--monday-card) !important;
+}
+
+@utility blue-gradient {
+  background: linear-gradient(336.99deg, var(--monday-gradient-start) 0%, var(--monday-gradient-end) 100%);
+}
+
+@utility transition-300 {
+  transition: all 300ms ease-in-out;
+}
+
+body {
+  font-family: 'Lexend Deca', sans-serif;
+  background-color: var(--color-monday-background);
+  color: var(--color-monday-black);
+}
+
+/* Browser autofill override for dark mode support */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--monday-background) inset !important;
+    -webkit-text-fill-color: var(--monday-black) !important;
+    border-color: transparent !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--monday-card) inset !important;
+    border-color: var(--monday-blue) !important;
+}
+
+/* Custom Scrollbar to match theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-monday-border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-monday-gray);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-monday-border) transparent;
+}
+
+/* Prevent table text wrapping */
+th, td {
+  white-space: nowrap;
+}
