@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react_sia_universitas_suzuran
+    restart: unless-stopped
+    ports:
+      - "5174:5173"
+    volumes:
+      - ./:/app
+      - /app/node_modules
