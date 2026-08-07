@@ -12,11 +12,11 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'http://host.docker.internal:8000',
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
       },
       '/storage': {
-        target: 'http://host.docker.internal:8000',
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
       }
     }

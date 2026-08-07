@@ -75,11 +75,14 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
     notes: ''
   });
 
+  const [visibleStudentsCount, setVisibleStudentsCount] = useState(10);
+
   // Reset expanded state when class changes
   useEffect(() => {
     setExpandedMeetingId(null);
     setShowExamForm(false);
     setGradeSearchQuery('');
+    setVisibleStudentsCount(10);
   }, [selectedClassForGrades]);
 
   useEffect(() => {
@@ -462,14 +465,18 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
                                   type="text"
                                   placeholder="Cari NIM atau Nama Mahasiswa..."
                                   value={gradeSearchQuery}
-                                  onChange={(e) => setGradeSearchQuery(e.target.value)}
+                                  onChange={(e) => {
+                                    setGradeSearchQuery(e.target.value);
+                                    setVisibleStudentsCount(10);
+                                  }}
                                   className="w-full pl-9 pr-4 py-2 bg-monday-background border border-monday-border rounded-xl text-sm font-semibold focus:outline-none focus:border-monday-blue transition-colors"
                                 />
                               </div>
                               {filteredStudents.length > 0 ? (
-                                <div className="divide-y divide-monday-border">
-                                  {filteredStudents.map((enroll) => {
-                                    const studentData = studentMap[enroll.student_id];
+                                <>
+                                  <div className="divide-y divide-monday-border">
+                                    {filteredStudents.slice(0, visibleStudentsCount).map((enroll) => {
+                                      const studentData = studentMap[enroll.student_id];
                                     return (
                                       <div key={enroll.id} className="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                                         <div className="space-y-0.5">
@@ -558,8 +565,20 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
                                         </div>
                                       </div>
                                     );
-                                  })}
-                                </div>
+                                    })}
+                                  </div>
+                                  {visibleStudentsCount < filteredStudents.length && (
+                                    <div className="pt-4 pb-2 flex justify-center border-t border-monday-border">
+                                      <button 
+                                        onClick={() => setVisibleStudentsCount(prev => prev + 10)}
+                                        className="px-6 py-2.5 bg-monday-blue/10 text-monday-blue hover:bg-monday-blue hover:text-white border border-monday-blue/20 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex items-center gap-2"
+                                      >
+                                        Tampilkan Lebih Banyak ({filteredStudents.length - visibleStudentsCount} tersisa)
+                                        <ChevronDown size={14} />
+                                      </button>
+                                    </div>
+                                  )}
+                                </>
                               ) : (
                                 <div className="py-6 text-center text-xs text-monday-gray italic font-semibold">
                                   Mahasiswa tidak ditemukan.
