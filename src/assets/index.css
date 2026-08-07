@@ -36,6 +36,36 @@
     --monday-gradient-end: #1e3a8a;
 }
 
+:root.theme-custom, .theme-custom {
+    --monday-background: #faf5ff;
+    --monday-border: #e9d5ff;
+    --monday-gray: #a855f7;
+    --monday-black: #462C7D;
+    --monday-blue: #FF70BF;
+    --monday-gray-background: #f3e8ff;
+    --monday-lime-green: #d946ef;
+    --monday-lime-green-char: #e879f9;
+    --monday-red: #ef4444;
+    --monday-card: #ffffff;
+    --monday-gradient-start: #462C7D;
+    --monday-gradient-end: #FF70BF;
+}
+
+:root.theme-custom-dark, .theme-custom-dark {
+    --monday-background: #11071F;
+    --monday-border: #3A205E;
+    --monday-gray: #C4AEE3;
+    --monday-black: #FAF5FF;
+    --monday-blue: #FF70BF;
+    --monday-gray-background: #251340;
+    --monday-lime-green: #d946ef;
+    --monday-lime-green-char: #e879f9;
+    --monday-red: #f43f5e;
+    --monday-card: #1C0F33;
+    --monday-gradient-start: #11071F;
+    --monday-gradient-end: #462C7D;
+}
+
 @theme {
     --font-sans: 'Lexend Deca', ui-sans-serif, system-ui, sans-serif;
     
