@@ -225,7 +225,7 @@ export default function Sidebar({ activeTab, setActiveTab, setSearchQuery, user,
           {!isMinimized && (
             <div className="p-4 text-center whitespace-nowrap overflow-hidden">
               <p className="text-xs text-monday-gray font-bold">SIAKAD v1.0.0 &copy; 2026</p>
-              <p className="text-[10px] text-monday-blue font-extrabold mt-0.5">Antigravity Design</p>
+              <p className="text-[10px] text-monday-blue font-extrabold mt-0.5">Design by Fachri Ibnu Falah</p>
             </div>
           )}
         </div>
