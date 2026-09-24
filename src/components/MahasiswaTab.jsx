@@ -485,8 +485,8 @@ const MahasiswaTab = React.memo(function MahasiswaTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader 
-        title="Manage Data Mahasiswa"
-        description={`Kelola data mahasiswa, program studi, dan dosen wali akademik mereka. Total: ${students.length} mahasiswa terdaftar.`}
+        title="Manajemen Mahasiswa"
+        description={`Mengelola data induk mahasiswa, program studi, dan pembimbing akademik. Total Mahasiswa: ${students.length}.`}
         icon={GraduationCap}
         actionLabel="Tambah Mahasiswa"
         actionIcon={Plus}

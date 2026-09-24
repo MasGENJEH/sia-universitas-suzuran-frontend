@@ -33,8 +33,8 @@ const ProdiTab = React.memo(function ProdiTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader 
-        title="Manage Program Studi"
-        description={`Kelola data program studi dan hubungannya dengan faculties. Total: ${studyPrograms.length} program studi terdaftar.`}
+        title="Manajemen Program Studi"
+        description={`Mengelola data referensi program studi dan relasinya dengan fakultas. Total Program Studi: ${studyPrograms.length}.`}
         icon={Award}
         actionLabel="Tambah Program Studi"
         actionIcon={Plus}
@@ -101,29 +101,47 @@ const ProdiTab = React.memo(function ProdiTab({
             </tr>
           </thead>
           <tbody className="divide-y divide-monday-border text-sm text-monday-black">
-            {filteredItems.map((pr, index) => {
-              const fakObj = facultyMap[pr.faculty_id];
-              return (
-                <tr key={pr.id} className="hover:bg-monday-gray-background/30 transition-colors">
-                  <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
-                  <td className="py-3.5 px-6 font-bold text-monday-blue">{pr.code}</td>
-                  <td className="py-3.5 px-6 font-semibold">{pr.name}</td>
-                  <td className="py-3.5 px-6">
-                    {fakObj ? (
-                      <span className="px-2.5 py-1 bg-monday-background border border-monday-border rounded-xl text-xs font-bold text-monday-gray">
-                        {fakObj.name}
-                      </span>
-                    ) : '-'}
-                  </td>
-                  <td className="py-3.5 px-6 text-right">
-                    <ActionButtons 
-                      onEdit={() => openModal('prodi', 'edit', pr)}
-                      onDelete={() => handleDeleteItem('prodi', pr.id)}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+            {filteredItems.length > 0 ? (
+              filteredItems.map((pr, index) => {
+                const fakObj = facultyMap[pr.faculty_id];
+                return (
+                  <tr key={pr.id} className="hover:bg-monday-gray-background/30 transition-colors">
+                    <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
+                    <td className="py-3.5 px-6 font-bold text-monday-blue">{pr.code}</td>
+                    <td className="py-3.5 px-6 font-semibold">{pr.name}</td>
+                    <td className="py-3.5 px-6">
+                      {fakObj ? (
+                        <span className="px-2.5 py-1 bg-monday-background border border-monday-border rounded-xl text-xs font-bold text-monday-gray">
+                          {fakObj.name}
+                        </span>
+                      ) : '-'}
+                    </td>
+                    <td className="py-3.5 px-6 text-right">
+                      <ActionButtons 
+                        onEdit={() => openModal('prodi', 'edit', pr)}
+                        onDelete={() => handleDeleteItem('prodi', pr.id)}
+                      />
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="5" className="p-12 text-center bg-monday-background/30">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="p-4 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                      <Award size={32} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-monday-black">Data Program Studi Kosong</h4>
+                      <p className="text-xs text-monday-gray mt-1 max-w-sm mx-auto">
+                        Tidak ada data program studi yang sesuai dengan kriteria pencarian Anda.
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

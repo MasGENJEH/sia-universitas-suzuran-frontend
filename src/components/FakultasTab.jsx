@@ -30,8 +30,8 @@ export default function FakultasTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader 
-        title="Manage Fakultas"
-        description={`Kelola data faculties universitas. Total: ${faculties.length} faculties terdaftar.`}
+        title="Manajemen Fakultas"
+        description={`Mengelola data referensi fakultas universitas. Total Fakultas: ${faculties.length}.`}
         icon={Building}
         actionLabel="Tambah Fakultas"
         actionIcon={Plus}
@@ -42,7 +42,7 @@ export default function FakultasTab({
         <SearchInput 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Cari faculties..."
+          placeholder="Cari fakultas..."
         />
       </div>
 
@@ -87,19 +87,37 @@ export default function FakultasTab({
             </tr>
           </thead>
           <tbody className="divide-y divide-monday-border text-sm text-monday-black">
-            {filteredItems.map((fak, index) => (
-              <tr key={fak.id} className="hover:bg-monday-gray-background/30 transition-colors">
-                <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
-                <td className="py-3.5 px-6 font-bold text-monday-blue">{fak.code}</td>
-                <td className="py-3.5 px-6 font-semibold">{fak.name}</td>
-                <td className="py-3.5 px-6 text-right">
-                  <ActionButtons 
-                    onEdit={() => openModal('faculties', 'edit', fak)}
-                    onDelete={() => handleDeleteItem('faculties', fak.id)}
-                  />
+            {filteredItems.length > 0 ? (
+              filteredItems.map((fak, index) => (
+                <tr key={fak.id} className="hover:bg-monday-gray-background/30 transition-colors">
+                  <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
+                  <td className="py-3.5 px-6 font-bold text-monday-blue">{fak.code}</td>
+                  <td className="py-3.5 px-6 font-semibold">{fak.name}</td>
+                  <td className="py-3.5 px-6 text-right">
+                    <ActionButtons 
+                      onEdit={() => openModal('faculties', 'edit', fak)}
+                      onDelete={() => handleDeleteItem('faculties', fak.id)}
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="p-12 text-center bg-monday-background/30">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="p-4 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                      <Building size={32} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-monday-black">Data Fakultas Kosong</h4>
+                      <p className="text-xs text-monday-gray mt-1 max-w-sm mx-auto">
+                        Tidak ada data fakultas yang sesuai dengan kriteria pencarian Anda.
+                      </p>
+                    </div>
+                  </div>
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

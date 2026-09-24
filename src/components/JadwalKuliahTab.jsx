@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Calendar, Clock, MapPin, BookOpen, Users, Info, Smile, Eye, X, CheckCircle2, AlertCircle, ChevronDown } from 'lucide-react';
+import { Calendar, CalendarOff, Clock, MapPin, BookOpen, Users, Info, Eye, X, CheckCircle2, AlertCircle, ChevronDown } from 'lucide-react';
 
 const JadwalKuliahTab = React.memo(function JadwalKuliahTab({
   user,
@@ -365,8 +365,8 @@ const JadwalKuliahTab = React.memo(function JadwalKuliahTab({
               ) : (
                 /* Empty Day Card */
                 <div className="flex items-center gap-3 p-4 bg-monday-gray-background/30 border border-dashed border-monday-border rounded-2xl text-monday-gray text-xs font-bold">
-                  <Smile size={16} className="text-monday-gray/60" />
-                  <span>Tidak ada jadwal kuliah day ini. Waktunya istirahat atau belajar mandiri!</span>
+                  <CalendarOff size={16} className="text-monday-gray/60 shrink-0" />
+                  <span>Tidak ada jadwal kuliah pada hari ini.</span>
                 </div>
               )}
               </div>

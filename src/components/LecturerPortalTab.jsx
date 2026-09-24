@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Briefcase, AlertTriangle, Search, Info, Users, GraduationCap, ChevronDown, ChevronUp, Calendar, Play, BookOpen, Clock, MapPin, Trash2, Edit2 } from 'lucide-react';
+import { Briefcase, AlertTriangle, Search, Info, Users, GraduationCap, ChevronDown, ChevronUp, Calendar, CalendarOff, Play, BookOpen, Clock, MapPin, Trash2, Edit2 } from 'lucide-react';
 import PageHeader from './ui/PageHeader';
 import SearchInput from './ui/SearchInput';
 
@@ -266,8 +266,8 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm print:border-none print:shadow-none print:bg-white print:p-0">
       <PageHeader 
-        title="Lecturer Portal"
-        description="Simulasi portal login dosen pada semester aktif. Dosen dapat memantau kelas, jadwal ujian, dan absensi."
+        title="Portal Dosen"
+        description="Portal kerja dosen: mengelola kelas, jadwal ujian, absensi pertemuan, dan mahasiswa bimbingan akademik."
         icon={Briefcase}
       />
 
@@ -580,14 +580,19 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
                                   )}
                                 </>
                               ) : (
-                                <div className="py-6 text-center text-xs text-monday-gray italic font-semibold">
-                                  Mahasiswa tidak ditemukan.
+                                <div className="py-6 text-center">
+                                  <p className="text-xs font-extrabold text-monday-black">Mahasiswa Tidak Ditemukan</p>
+                                  <p className="text-xs text-monday-gray mt-1">Tidak ada mahasiswa di kelas ini yang cocok dengan pencarian.</p>
                                 </div>
                               )}
                             </>
                           ) : (
-                            <div className="py-10 text-center text-xs text-monday-gray font-semibold">
-                              Belum ada mahasiswa terdaftar di kelas kuliah ini.
+                            <div className="py-8 flex flex-col items-center gap-2 text-center">
+                              <div className="p-3 rounded-full bg-monday-background border border-dashed border-monday-border text-monday-gray/50">
+                                <Users size={20} />
+                              </div>
+                              <p className="text-xs font-extrabold text-monday-black">Belum Ada Peserta</p>
+                              <p className="text-xs text-monday-gray">Belum ada mahasiswa yang terdaftar di kelas kuliah ini.</p>
                             </div>
                           )}
                         </>
@@ -761,8 +766,14 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
                                           })
                                         ) : (
                                           <tr>
-                                            <td colSpan={4} className="py-8 text-center text-xs text-monday-gray font-semibold">
-                                              Belum ada mahasiswa di kelas ini.
+                                            <td colSpan={4} className="py-8 text-center bg-monday-background/30">
+                                              <div className="flex flex-col items-center gap-2">
+                                                <div className="p-3 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                                                  <Users size={20} />
+                                                </div>
+                                                <p className="text-xs font-extrabold text-monday-black">Belum Ada Peserta</p>
+                                                <p className="text-xs text-monday-gray">Belum ada mahasiswa yang terdaftar di kelas ini.</p>
+                                              </div>
                                             </td>
                                           </tr>
                                         )}
@@ -778,8 +789,12 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
                     })}
                   </div>
                 ) : (
-                  <div className="py-12 bg-monday-background rounded-2xl border border-dashed border-monday-border text-center text-monday-gray text-xs font-bold leading-normal">
-                    Belum ada data pertemuan untuk kelas ini yang ter-generate otomatis.
+                  <div className="py-10 flex flex-col items-center gap-2 bg-monday-background rounded-2xl border border-dashed border-monday-border text-center">
+                    <div className="p-3 rounded-full bg-white border border-monday-border text-monday-gray/50">
+                      <CalendarOff size={20} />
+                    </div>
+                    <p className="text-xs font-extrabold text-monday-black">Data Pertemuan Belum Ada</p>
+                    <p className="text-xs text-monday-gray">Belum ada data pertemuan untuk kelas ini yang ter-generate otomatis.</p>
                   </div>
                 )
               ) : (
@@ -1130,14 +1145,22 @@ const LecturerPortalTab = React.memo(function LecturerPortalTab({
                     </table>
                   </div>
                 ) : (
-                  <div className="py-12 bg-monday-background rounded-2xl border border-dashed border-monday-border text-center text-monday-gray text-xs font-bold leading-normal">
-                    Tidak ada mahasiswa bimbingan yang cocok dengan pencarian "{adviseeSearchQuery}".
+                  <div className="py-10 flex flex-col items-center gap-2 bg-monday-background rounded-2xl border border-dashed border-monday-border text-center">
+                    <div className="p-3 rounded-full bg-white border border-monday-border text-monday-gray/50">
+                      <Users size={20} />
+                    </div>
+                    <p className="text-xs font-extrabold text-monday-black">Mahasiswa Tidak Ditemukan</p>
+                    <p className="text-xs text-monday-gray">Tidak ada mahasiswa bimbingan yang cocok dengan pencarian &ldquo;{adviseeSearchQuery}&rdquo;.</p>
                   </div>
                 );
               })()
             ) : (
-              <div className="py-12 bg-monday-background rounded-2xl border border-dashed border-monday-border text-center text-monday-gray text-xs font-bold leading-normal">
-                Belum ada data mahasiswa bimbingan akademik (perwalian) untuk dosen ini.
+              <div className="py-10 flex flex-col items-center gap-2 bg-monday-background rounded-2xl border border-dashed border-monday-border text-center">
+                <div className="p-3 rounded-full bg-white border border-monday-border text-monday-gray/50">
+                  <GraduationCap size={20} />
+                </div>
+                <p className="text-xs font-extrabold text-monday-black">Belum Ada Mahasiswa Bimbingan</p>
+                <p className="text-xs text-monday-gray">Belum ada mahasiswa yang ditetapkan sebagai bimbingan akademik (perwalian) untuk dosen ini.</p>
               </div>
             )}
           </div>

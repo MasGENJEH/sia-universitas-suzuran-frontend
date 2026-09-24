@@ -331,8 +331,14 @@ const KelasMahasiswaTab = React.memo(function KelasMahasiswaTab({
               })}
               {selectedStudentData.enrollments.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-monday-gray font-semibold italic">
-                    Belum ada mata kuliah yang diambil mahasiswa ini.
+                  <td colSpan={7} className="py-10 text-center bg-monday-background/30">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="p-3 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                        <BookOpen size={24} />
+                      </div>
+                      <p className="text-xs font-extrabold text-monday-black">KRS Belum Diisi</p>
+                      <p className="text-xs text-monday-gray">Mahasiswa ini belum mendaftarkan mata kuliah pada semester aktif.</p>
+                    </div>
                   </td>
                 </tr>
               )}
@@ -499,8 +505,18 @@ const KelasMahasiswaTab = React.memo(function KelasMahasiswaTab({
             ))}
             {itemsToDisplay.length === 0 && (
               <tr>
-                <td colSpan={7} className="py-12 text-center text-monday-gray font-semibold italic">
-                  {searchQuery ? 'Tidak ada mahasiswa yang cocok dengan pencarian.' : 'Belum ada data KRS mahasiswa.'}
+                <td colSpan={7} className="py-10 text-center bg-monday-background/30">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="p-3 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                      <Users size={24} />
+                    </div>
+                    <p className="text-xs font-extrabold text-monday-black">
+                      {searchQuery ? 'Mahasiswa Tidak Ditemukan' : 'Belum Ada Data KRS'}
+                    </p>
+                    <p className="text-xs text-monday-gray">
+                      {searchQuery ? `Tidak ada mahasiswa yang cocok dengan pencarian "${searchQuery}".` : 'Belum ada mahasiswa yang mendaftarkan kelas kuliah (KRS).'}
+                    </p>
+                  </div>
                 </td>
               </tr>
             )}

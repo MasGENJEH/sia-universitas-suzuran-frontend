@@ -61,8 +61,8 @@ const KelasKuliahTab = React.memo(function KelasKuliahTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader
-        title="Manage Kelas Kuliah & Team Teaching"
-        description={`Kelola kelas perkuliahan aktif, penugasan dosen tunggal, atau team teaching pengampu. Total: ${kelasKuliahs.length} kelas terdaftar.`}
+        title="Manajemen Kelas Kuliah & Team Teaching"
+        description={`Mengelola kelas perkuliahan aktif, penugasan dosen tunggal atau tim pengampu (team teaching). Total Kelas: ${kelasKuliahs.length}.`}
         icon={Layers}
         actionLabel="Tambah Kelas Kuliah"
         actionIcon={Plus}
@@ -530,8 +530,14 @@ const KelasKuliahTab = React.memo(function KelasKuliahTab({
                         })
                       ) : (
                         <tr>
-                          <td colSpan={5} className="py-8 text-center text-monday-gray font-bold italic">
-                            Belum ada mahasiswa yang terdaftar di kelas ini.
+                          <td colSpan={5} className="py-10 text-center bg-monday-background/30">
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="p-3 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                                <Users size={24} />
+                              </div>
+                              <p className="text-xs font-extrabold text-monday-black">Belum Ada Peserta</p>
+                              <p className="text-xs text-monday-gray">Daftarkan mahasiswa ke kelas ini melalui menu KRS.</p>
+                            </div>
                           </td>
                         </tr>
                       )}

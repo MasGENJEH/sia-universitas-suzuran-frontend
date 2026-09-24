@@ -408,8 +408,8 @@ const DosenTab = React.memo(function DosenTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader 
-        title="Manage Data Dosen"
-        description={`Kelola data staf pengajar/dosen dan bimbingan akademik. Total: ${lecturers.length} dosen terdaftar.`}
+        title="Manajemen Dosen"
+        description={`Mengelola data staf pengajar dan dosen pembimbing akademik. Total Dosen: ${lecturers.length}.`}
         icon={Users}
         actionLabel="Tambah Dosen"
         actionIcon={Plus}

@@ -43,8 +43,8 @@ const MataKuliahTab = React.memo(function MataKuliahTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader 
-        title="Manage Mata Kuliah"
-        description={`Kelola data kurikulum mata kuliah, jumlah SKS, dan relasi program studi. Total: ${mataKuliahs.length} mata kuliah terdaftar.`}
+        title="Manajemen Mata Kuliah"
+        description={`Mengelola referensi kurikulum mata kuliah, beban SKS, dan relasi prodi. Total Mata Kuliah: ${mataKuliahs.length}.`}
         icon={BookOpen}
         actionLabel="Tambah Mata Kuliah"
         actionIcon={Plus}
@@ -122,30 +122,48 @@ const MataKuliahTab = React.memo(function MataKuliahTab({
             </tr>
           </thead>
           <tbody className="divide-y divide-monday-border text-sm text-monday-black">
-            {itemsToDisplay.map((mk, index) => {
-              const prObj = studyProgramMap[mk.study_program_id];
-              return (
-                <tr key={mk.id} className="hover:bg-monday-gray-background/30 transition-colors">
-                  <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
-                  <td className="py-3.5 px-6 font-bold text-monday-blue">{mk.code}</td>
-                  <td className="py-3.5 px-6 font-semibold">{mk.name}</td>
-                  <td className="py-3.5 px-6 font-bold text-monday-black">{mk.sks} SKS</td>
-                  <td className="py-3.5 px-6">
-                    {prObj ? (
-                      <span className="px-2.5 py-1 bg-monday-background border border-monday-border rounded-xl text-xs font-bold text-monday-gray">
-                        {prObj.name}
-                      </span>
-                    ) : '-'}
-                  </td>
-                  <td className="py-3.5 px-6 text-right">
-                    <ActionButtons 
-                      onEdit={() => openModal('mataKuliah', 'edit', mk)}
-                      onDelete={() => handleDeleteItem('mataKuliah', mk.id)}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+            {itemsToDisplay.length > 0 ? (
+              itemsToDisplay.map((mk, index) => {
+                const prObj = studyProgramMap[mk.study_program_id];
+                return (
+                  <tr key={mk.id} className="hover:bg-monday-gray-background/30 transition-colors">
+                    <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
+                    <td className="py-3.5 px-6 font-bold text-monday-blue">{mk.code}</td>
+                    <td className="py-3.5 px-6 font-semibold">{mk.name}</td>
+                    <td className="py-3.5 px-6 font-bold text-monday-black">{mk.sks} SKS</td>
+                    <td className="py-3.5 px-6">
+                      {prObj ? (
+                        <span className="px-2.5 py-1 bg-monday-background border border-monday-border rounded-xl text-xs font-bold text-monday-gray">
+                          {prObj.name}
+                        </span>
+                      ) : '-'}
+                    </td>
+                    <td className="py-3.5 px-6 text-right">
+                      <ActionButtons 
+                        onEdit={() => openModal('mataKuliah', 'edit', mk)}
+                        onDelete={() => handleDeleteItem('mataKuliah', mk.id)}
+                      />
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="6" className="p-12 text-center bg-monday-background/30">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="p-4 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                      <BookOpen size={32} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-monday-black">Data Mata Kuliah Kosong</h4>
+                      <p className="text-xs text-monday-gray mt-1 max-w-sm mx-auto">
+                        Tidak ada data mata kuliah yang sesuai dengan kriteria pencarian Anda.
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

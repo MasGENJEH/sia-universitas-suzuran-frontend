@@ -182,8 +182,18 @@ export default function UserTab({ users, searchQuery, setSearchQuery, openModal,
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="p-8 text-center text-monday-gray font-semibold">
-                  Tidak ada user yang ditemukan.
+                <td colSpan="6" className="p-12 text-center bg-monday-background/30">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="p-4 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                      <Users size={32} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-monday-black">Data User Kosong</h4>
+                      <p className="text-xs text-monday-gray mt-1 max-w-sm mx-auto">
+                        Tidak ada data pengguna yang sesuai dengan filter atau kata kunci pencarian Anda.
+                      </p>
+                    </div>
+                  </div>
                 </td>
               </tr>
             )}

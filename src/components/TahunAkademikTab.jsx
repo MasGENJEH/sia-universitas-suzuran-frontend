@@ -32,8 +32,8 @@ export default function TahunAkademikTab({
   return (
     <div className="flex flex-col gap-6 flex-1 rounded-3xl p-6 bg-white border border-monday-border shadow-sm">
       <PageHeader 
-        title="Manage Tahun Akademik"
-        description="Kelola data tahun akademik dan aktifkan salah satu semester berjalan."
+        title="Manajemen Tahun Akademik"
+        description="Mengelola data referensi tahun akademik dan mengatur periode semester aktif berjalan."
         icon={Calendar}
         actionLabel="Tambah Tahun Akademik"
         actionIcon={Plus}
@@ -101,33 +101,51 @@ export default function TahunAkademikTab({
             </tr>
           </thead>
           <tbody className="divide-y divide-monday-border text-sm text-monday-black">
-            {filteredItems.map((ta, index) => (
-              <tr key={ta.id} className="hover:bg-monday-gray-background/30 transition-colors">
-                <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
-                <td className="py-3.5 px-6 font-bold text-monday-blue">{ta.code}</td>
-                <td className="py-3.5 px-6 font-semibold">{ta.name}</td>
-                <td className="py-3.5 px-6 text-center">
-                  {ta.status ? (
-                    <span className="px-3 py-1 bg-monday-lime-green/20 border border-monday-lime-green/30 text-monday-black text-xs font-bold rounded-full">
-                      Aktif
-                    </span>
-                  ) : (
-                    <button 
-                      onClick={() => toggleTahunAkademikStatus(ta)}
-                      className="px-3 py-1 bg-monday-gray-background border border-monday-border text-monday-gray hover:text-monday-blue hover:border-monday-blue/30 text-xs font-bold rounded-full transition-300 flex items-center gap-1 mx-auto"
-                    >
-                      <Check size={12} /> Aktifkan
-                    </button>
-                  )}
-                </td>
-                <td className="py-3.5 px-6 text-right">
-                  <ActionButtons 
-                    onEdit={() => openModal('tahunAkademik', 'edit', ta)}
-                    onDelete={() => handleDeleteItem('tahunAkademik', ta.id)}
-                  />
+            {filteredItems.length > 0 ? (
+              filteredItems.map((ta, index) => (
+                <tr key={ta.id} className="hover:bg-monday-gray-background/30 transition-colors">
+                  <td className="py-3.5 px-6 text-monday-gray font-mono font-semibold">{index + 1}</td>
+                  <td className="py-3.5 px-6 font-bold text-monday-blue">{ta.code}</td>
+                  <td className="py-3.5 px-6 font-semibold">{ta.name}</td>
+                  <td className="py-3.5 px-6 text-center">
+                    {ta.status ? (
+                      <span className="px-3 py-1 bg-monday-lime-green/20 border border-monday-lime-green/30 text-monday-black text-xs font-bold rounded-full">
+                        Aktif
+                      </span>
+                    ) : (
+                      <button 
+                        onClick={() => toggleTahunAkademikStatus(ta)}
+                        className="px-3 py-1 bg-monday-gray-background border border-monday-border text-monday-gray hover:text-monday-blue hover:border-monday-blue/30 text-xs font-bold rounded-full transition-300 flex items-center gap-1 mx-auto"
+                      >
+                        <Check size={12} /> Aktifkan
+                      </button>
+                    )}
+                  </td>
+                  <td className="py-3.5 px-6 text-right">
+                    <ActionButtons 
+                      onEdit={() => openModal('tahunAkademik', 'edit', ta)}
+                      onDelete={() => handleDeleteItem('tahunAkademik', ta.id)}
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="p-12 text-center bg-monday-background/30">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="p-4 rounded-full bg-white border border-dashed border-monday-border text-monday-gray/50">
+                      <Calendar size={32} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-monday-black">Data Tahun Akademik Kosong</h4>
+                      <p className="text-xs text-monday-gray mt-1 max-w-sm mx-auto">
+                        Tidak ada data tahun akademik yang sesuai dengan kriteria pencarian Anda.
+                      </p>
+                    </div>
+                  </div>
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
